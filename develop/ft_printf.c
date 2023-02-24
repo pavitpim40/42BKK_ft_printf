@@ -33,7 +33,13 @@ int ft_printf(char *fmt,...)
 			if(*fmt == 's') 
 			{
 				s = va_arg(ap, char *);
-				write(1,s,ft_strlen(s));
+				len += write(1,s,ft_strlen(s));
+				fmt++;
+			}
+			else if (*fmt == 'c')
+			{
+				c = va_arg(ap,int);
+				len += write(1,&c,1);
 				fmt++;
 			}
 				
@@ -54,8 +60,9 @@ int ft_printf(char *fmt,...)
 int main ()
 {
 	char *text = "42BKK";
+	char c = '-';
 	int len;
-	len = ft_printf("%s\n\n",text);
+	len = ft_printf("%s %c\n",text,c);
 	// len = ft_printf("Hello\n");
 	printf("Len of String is %d", len);
 	return (0);
