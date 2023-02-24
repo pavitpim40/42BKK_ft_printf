@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppimchan <ppimchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/06 21:18:46 by ppimchan          #+#    #+#             */
-/*   Updated: 2023/02/24 23:07:59 by ppimchan         ###   ########.fr       */
+/*   Created: 2023/02/24 23:06:42 by ppimchan          #+#    #+#             */
+/*   Updated: 2023/02/24 23:07:08 by ppimchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
 
-void	ft_bzero(void *s, size_t n);
-void	*ft_calloc(size_t count, size_t size);
-size_t	ft_strlen(const char *s);
-char	*ft_itoa(int n);
-
-
-#endif
+	if (count * size < count && count * size < size)
+		return (NULL);
+	ptr = malloc(count * size);
+	if (ptr == 0)
+		return (ptr);
+	ft_bzero(ptr, count * size);
+	return (ptr);
+}
