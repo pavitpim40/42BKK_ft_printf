@@ -5,6 +5,21 @@
 // void print()
 // ap == argument to be process
 
+typedef struct s_print
+{
+	va_list	args;
+	int		width;
+	int		precision;
+	int		zero;
+	int		point;
+	int		dash;
+	int		total_length;
+	int		sign;
+	int		is_zero;
+	int		percent;
+	int		space;
+}	t_print;
+
 size_t	ft_strlen(const char *s)
 {
 	int	i;
@@ -42,6 +57,12 @@ int ft_printf(char *fmt,...)
 				len += write(1,&c,1);
 				fmt++;
 			}
+			else if(*fmt == '%')
+			{
+				// c = va_arg(ap,int);
+				len += write(1,"%",1);
+				fmt++;
+			}
 				
 		} else {
 			write(1,fmt,1);
@@ -62,7 +83,7 @@ int main ()
 	char *text = "42BKK";
 	char c = '-';
 	int len;
-	len = ft_printf("%s %c\n",text,c);
+	len = ft_printf("%s %%percent %c \n",text,c);
 	// len = ft_printf("Hello\n");
 	printf("Len of String is %d", len);
 	return (0);
